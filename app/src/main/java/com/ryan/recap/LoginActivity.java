@@ -40,9 +40,20 @@ public class LoginActivity extends Activity {
         this.loginButton = (Button) findViewById(R.id.loginButton);
         this.createAccount = (TextView) findViewById(R.id.createAccount);
 
-        emailAddress.setText(getPreference(Constants.USERNAME));
-        password.setText(getPreference(Constants.PASSWORD));
+        this.emailAddress.setText(getPreference(Constants.USERNAME));
+        this.password.setText(getPreference(Constants.PASSWORD));
+
+        this.createAccount.setOnClickListener(createAccountListener);
+        this.loginButton.setOnClickListener(loginListener);
     }
+
+    private final View.OnClickListener createAccountListener = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            final Intent createAccount = new Intent(LoginActivity.this, CreateAccountActivity.class);
+            startActivity(createAccount);
+        }
+    };
 
     private final View.OnClickListener loginListener = new View.OnClickListener() {
         @Override
