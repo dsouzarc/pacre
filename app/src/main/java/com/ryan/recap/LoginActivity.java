@@ -47,7 +47,7 @@ public class LoginActivity extends Activity {
     private final View.OnClickListener loginListener = new View.OnClickListener() {
         @Override
         public void onClick(final View view) {
-            
+
         }
     };
 
