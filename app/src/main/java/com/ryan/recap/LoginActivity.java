@@ -4,15 +4,37 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.TextView;
+import android.widget.ProgressBar;
+import android.app.AlertDialog;
+import android.widget.EditText;
+import android.widget.Button;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.Intent;
+import android.widget.View;
 
 public class LoginActivity extends Activity {
+
+    private Context theC;
+    private SharedPreferences thePrefs;
+    private SharedPreferences.Editor theEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        this.theC = this;
+        this.thePrefs = theC.getSharedPreferences("com.ryan.recap", Context.MODE_PRIVATE);
+        this.theEditor = this.thePrefs.edit();
+
+        final EditText emailAddress = (EditText) findViewById(R.id.emailAddressET);
+        final EditText password = (EditText) findViewById(R.id.passwordET);
+        final Button loginButton = (Button) findViewById(R.id.loginButton);
+        final TextView createAccount = (TextView) findViewById(R.id.createAccount);
     }
+    
 
 
     @Override

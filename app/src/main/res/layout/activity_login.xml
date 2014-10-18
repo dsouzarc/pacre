@@ -54,5 +54,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Sign In"
-        android:background="@color/primary800"/>
+        android:background="@color/primary800"
+        android:id="@+id/loginButton"/>
 </RelativeLayout>
