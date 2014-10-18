@@ -22,6 +22,10 @@ public class LoginActivity extends Activity {
     private SharedPreferences thePrefs;
     private SharedPreferences.Editor theEditor;
 
+    private EditText emailAddress, password;
+    private Button loginButton;
+    private TextView createAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +35,21 @@ public class LoginActivity extends Activity {
         this.thePrefs = theC.getSharedPreferences("com.ryan.recap", Context.MODE_PRIVATE);
         this.theEditor = this.thePrefs.edit();
 
-        final EditText emailAddress = (EditText) findViewById(R.id.emailAddressET);
-        final EditText password = (EditText) findViewById(R.id.passwordET);
-        final Button loginButton = (Button) findViewById(R.id.loginButton);
-        final TextView createAccount = (TextView) findViewById(R.id.createAccount);
+        this.emailAddress = (EditText) findViewById(R.id.emailAddressET);
+        this.password = (EditText) findViewById(R.id.passwordET);
+        this.loginButton = (Button) findViewById(R.id.loginButton);
+        this.createAccount = (TextView) findViewById(R.id.createAccount);
 
         emailAddress.setText(getPreference(Constants.USERNAME));
         password.setText(getPreference(Constants.PASSWORD));
     }
+
+    private final View.OnClickListener loginListener = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            
+        }
+    };
 
     private String getPreference(final String tag) {
         return this.thePrefs.getString(tag, "");
