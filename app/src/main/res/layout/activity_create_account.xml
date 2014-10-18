@@ -9,8 +9,47 @@
     tools:context="com.ryan.recap.CreateAccountActivity">
 
     <TextView
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Your Profile Photo"
+        android:id="@+id/photoTV"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profilePictureIV"
+        android:layout_below="@+id/photoTV"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Name"
+        android:layout_marginTop="8dp"
+        android:id="@+id/nameTV"
+        android:layout_below="@+id/profilePictureIV"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Anthony Geranio"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/nameTV"
+        android:id="@+id/nameET"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Email Address"
+        android:layout_below="@+id/nameET"
+        android:layout_marginTop="16dp"
+        android:id="@+id/emailTV"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Valid Quinnipac .edu Email Address"
+        android:layout_below="@+id/emailTV"
+        android:layout_marginTop="8dp"
+        android:id="@+id/emailET"/>
 
 </RelativeLayout>
