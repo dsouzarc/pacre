@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.view.View;
+import android.util.Log;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
@@ -33,9 +35,19 @@ public class LoginActivity extends Activity {
         final EditText password = (EditText) findViewById(R.id.passwordET);
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         final TextView createAccount = (TextView) findViewById(R.id.createAccount);
+
+        emailAddress.setText(getPreference(Constants.USERNAME));
+        password.setText(getPreference(Constants.PASSWORD));
     }
 
+    private String getPreference(final String tag) {
+        return this.thePrefs.getString(tag, "");
+    }
 
+    private void setPreference(final String tag, final String value) {
+        this.theEditor.putString(tag, value);
+        this.theEditor.commit();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
