@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
-import android.widget.View;
+import android.view.View;
 
 public class LoginActivity extends Activity {
 
@@ -34,7 +34,7 @@ public class LoginActivity extends Activity {
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         final TextView createAccount = (TextView) findViewById(R.id.createAccount);
     }
-    
+
 
 
     @Override
