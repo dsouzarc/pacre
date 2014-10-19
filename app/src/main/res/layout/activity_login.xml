@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/passwordET"
         android:layout_marginBottom="16dp"
-        android:hint="Your Valid Quinnipiac .edu email address"
+        android:hint="Valid Quinnipiac .edu email address"
         android:id="@+id/emailAddressET"/>
 
     <EditText
