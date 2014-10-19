@@ -1,23 +1,20 @@
 package com.ryan.recap;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.ProgressBar;
-import android.app.AlertDialog;
-import android.widget.EditText;
-import android.widget.Button;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.Intent;
 import android.view.View;
-import android.util.Log;
-import android.widget.Toast;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.io.FileInputStream;
 
 public class LoginActivity extends Activity {

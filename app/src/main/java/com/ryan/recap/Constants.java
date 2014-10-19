@@ -1,8 +1,8 @@
 package com.ryan.recap;
 
-import android.widget.Toast;
-import android.util.Log;
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 public final class Constants {
 

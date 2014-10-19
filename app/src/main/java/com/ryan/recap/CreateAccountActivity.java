@@ -1,30 +1,26 @@
 package com.ryan.recap;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import com.ryan.recap.R;
-import android.widget.EditText;
-import android.net.Uri;
-import android.content.Intent;
-import android.provider.MediaStore.Images.Media;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
-import android.graphics.BitmapFactory;
-import java.io.FileInputStream;
-import android.provider.MediaStore;
-import android.graphics.Matrix;
-import java.io.FileOutputStream;
-import android.view.View;
-import android.widget.ImageView;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Media;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
-import android.graphics.drawable.BitmapDrawable;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 public class CreateAccountActivity extends Activity {
 
@@ -177,15 +173,12 @@ public class CreateAccountActivity extends Activity {
     private Bitmap getImage(final Bitmap original) {
         final int width = original.getWidth();
         final int height = original.getHeight();
-        float scaleWidth = ((float) Constants.IMAGE_SIZE) / width;
-        float scaleHeight = ((float) Constants.IMAGE_SIZE) / height;
+        final float scaleWidth = ((float) Constants.IMAGE_SIZE) / width;
+        final float scaleHeight = ((float) Constants.IMAGE_SIZE) / height;
 
-        // createa matrix for the manipulation
         final Matrix matrix = new Matrix();
-        // resize the bit map
         matrix.postScale(scaleWidth, scaleHeight);
 
-        // recreate the new Bitmap
         final Bitmap resizedBitmap = Bitmap.createBitmap(original, 0, 0,
                 width, height, matrix, true);
         return resizedBitmap;
