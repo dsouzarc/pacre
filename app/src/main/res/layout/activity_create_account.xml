@@ -8,7 +8,12 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.ryan.recap.CreateAccountActivity">
 
-        <RelativeLayout
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
@@ -25,7 +30,7 @@
                 android:id="@+id/profilePictureIV"
                 android:src="@drawable/blankprofile"
                 android:layout_above="@+id/nameTV"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_below="@+id/photoTV"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -96,5 +101,6 @@
                 android:text="Create Account"
                 android:background="@color/primary800"
                 android:id="@+id/createAccountButton"/>
-        </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -62,8 +62,6 @@ public class CreateAccountActivity extends Activity {
     private final View.OnClickListener chooseProfilePictureListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            profilePicture.setImageBitmap(null);
-
             if(currentImage != null) {
                 currentImage.recycle();
             }
