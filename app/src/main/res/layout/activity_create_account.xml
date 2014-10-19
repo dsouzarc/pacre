@@ -34,6 +34,7 @@
                 android:layout_below="@+id/photoTV"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
+                android:layout_marginTop="16dp"
                 android:scaleType="centerInside"
                 android:maxWidth="200dp"
                 android:maxHeight="200dp"/>
@@ -42,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your Name"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:id="@+id/nameTV"
                 android:layout_centerVertical="true"/>
 
