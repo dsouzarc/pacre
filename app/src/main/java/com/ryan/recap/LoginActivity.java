@@ -15,6 +15,10 @@ import android.content.Intent;
 import android.view.View;
 import android.util.Log;
 import android.widget.Toast;
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+import java.io.FileInputStream;
 
 public class LoginActivity extends Activity {
 
@@ -24,6 +28,7 @@ public class LoginActivity extends Activity {
 
     private EditText emailAddress, password;
     private Button loginButton;
+    private ImageView pictureIV;
     private TextView createAccount;
 
     @Override
@@ -35,6 +40,7 @@ public class LoginActivity extends Activity {
         this.thePrefs = theC.getSharedPreferences(Constants.APP_TAG, Context.MODE_PRIVATE);
         this.theEditor = this.thePrefs.edit();
 
+        this.pictureIV = (ImageView) findViewById(R.id.imageView);
         this.emailAddress = (EditText) findViewById(R.id.emailAddressET);
         this.password = (EditText) findViewById(R.id.passwordET);
         this.loginButton = (Button) findViewById(R.id.loginButton);
@@ -45,6 +51,8 @@ public class LoginActivity extends Activity {
 
         this.createAccount.setOnClickListener(createAccountListener);
         this.loginButton.setOnClickListener(loginListener);
+
+        setImagePhoto();
     }
 
     private final View.OnClickListener createAccountListener = new View.OnClickListener() {
@@ -71,6 +79,19 @@ public class LoginActivity extends Activity {
             }
         }
     };
+
+    /** Checks to see if saved profile photo
+     * If not, keeps default photo */
+    private void setImagePhoto() {
+        try {
+            final FileInputStream fis = theC.openFileInput(Constants.PROFILE_PICTURE);
+            final Bitmap b = BitmapFactory.decodeStream(fis);
+            fis.close();
+            this.pictureIV.setImageBitmap(b);
+        }
+        catch(Exception e) {
+        }
+    }
 
     private void makeToast(final String message) {
         Constants.makeToast(theC, message);
