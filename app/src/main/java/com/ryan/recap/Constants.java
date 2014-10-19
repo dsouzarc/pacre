@@ -14,6 +14,7 @@ public final class Constants {
 
     public static final int USERNAME_MINIMUM = 14;
     public static final int PASSWORD_MINIMUM = 5;
+    public static final int IMAGE_SIZE = 500;
 
     public static void log(final String message) {
         Log.e(APP_TAG, message);

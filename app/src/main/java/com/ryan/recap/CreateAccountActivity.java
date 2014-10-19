@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView.ScaleType;
 import android.graphics.BitmapFactory;
 import java.io.FileInputStream;
 import android.provider.MediaStore;
@@ -22,6 +23,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+
+import android.graphics.drawable.BitmapDrawable;
 
 public class CreateAccountActivity extends Activity {
 
@@ -36,7 +39,6 @@ public class CreateAccountActivity extends Activity {
     private Button createAccountButton;
 
     private Bitmap currentImage = null;
-    private Bitmap rotateImage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,30 +157,39 @@ public class CreateAccountActivity extends Activity {
             final Uri imageUri = data.getData();
 
             try {
-                this.currentImage = Media.getBitmap(this.getContentResolver(), imageUri);
+                this.currentImage = getImage(Media.getBitmap(this.getContentResolver(), imageUri));
 
                 if(getOrientation(imageUri) != 0) {
                     final Matrix matrix = new Matrix();
                     matrix.postRotate(getOrientation(imageUri));
-
-                    if(rotateImage != null) {
-                        rotateImage.recycle();
-                    }
-                    rotateImage = Bitmap.createBitmap(currentImage, 0, 0, currentImage.getWidth(),
-                            currentImage.getHeight(), matrix, true);
-                    profilePicture.setImageBitmap(rotateImage);
-                    currentImage.recycle();
-                    currentImage = rotateImage;
+                    this.currentImage = Bitmap.createBitmap(currentImage, 0, 0, Constants.IMAGE_SIZE,
+                            Constants.IMAGE_SIZE, matrix, true);
                 }
-                else {
-                    profilePicture.setImageBitmap(currentImage);
-                }
+                profilePicture.setImageBitmap(currentImage);
                 saveProfilePicture();
             }
             catch (Exception e) {
                 makeToast("Sorry, something went wrong");
             }
         }
+    }
+
+    private Bitmap getImage(final Bitmap original) {
+        final int width = original.getWidth();
+        final int height = original.getHeight();
+        float scaleWidth = ((float) Constants.IMAGE_SIZE) / width;
+        float scaleHeight = ((float) Constants.IMAGE_SIZE) / height;
+
+        // createa matrix for the manipulation
+        final Matrix matrix = new Matrix();
+        // resize the bit map
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // recreate the new Bitmap
+        final Bitmap resizedBitmap = Bitmap.createBitmap(original, 0, 0,
+                width, height, matrix, true);
+        return resizedBitmap;
+
     }
 
     public int getOrientation(Uri photoUri) {
