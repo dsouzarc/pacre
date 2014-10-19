@@ -32,7 +32,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         this.theC = this;
-        this.thePrefs = theC.getSharedPreferences("com.ryan.recap", Context.MODE_PRIVATE);
+        this.thePrefs = theC.getSharedPreferences(Constants.APP_TAG, Context.MODE_PRIVATE);
         this.theEditor = this.thePrefs.edit();
 
         this.emailAddress = (EditText) findViewById(R.id.emailAddressET);

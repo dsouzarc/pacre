@@ -8,9 +8,10 @@ public final class Constants {
 
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
+    public static final String APP_TAG = "com.ryan.recap";
 
     public static void log(final String message) {
-        Log.e("com.ryan.recap", message);
+        Log.e(APP_TAG, message);
     }
 
     public static void makeToast(final Context context, final String message) {
