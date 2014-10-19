@@ -6,20 +6,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.ryan.recap.R;
 import android.widget.EditText;
+import android.net.Uri;
 import android.content.Intent;
+import android.provider.MediaStore.Images.Media;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Button;
 import android.widget.TextView;
+import android.provider.MediaStore;
+import android.graphics.Matrix;
 import android.view.View;
+import android.widget.ImageView;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 
 public class CreateAccountActivity extends Activity {
+
+    private static final int CHOOSE_PROFILE_PICTURE_RESULT = 1001;
 
     private Context theC;
     private SharedPreferences thePrefs;
     private SharedPreferences.Editor theEditor;
+
+    private ImageView profilePicture;
     private EditText nameET, usernameET, passwordET, confirmPasswordET;
     private Button createAccountButton;
+
+    private Bitmap currentImage = null;
+    private Bitmap rotateImage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +49,30 @@ public class CreateAccountActivity extends Activity {
         this.passwordET = (EditText) findViewById(R.id.passwordET);
         this.confirmPasswordET = (EditText) findViewById(R.id.confirmPasswordET);
         this.createAccountButton = (Button) findViewById(R.id.createAccountButton);
+        this.profilePicture = (ImageView) findViewById(R.id.profilePictureIV);
+
+        this.createAccountButton.setOnClickListener(createAccountListener);
+        this.profilePicture.setOnClickListener(chooseProfilePictureListener);
 
     }
+
+    private final View.OnClickListener chooseProfilePictureListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            profilePicture.setImageBitmap(null);
+
+            if(currentImage != null) {
+                currentImage.recycle();
+            }
+
+            final Intent choosePhoto = new Intent();
+            choosePhoto.setType("image/*");
+            choosePhoto.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(choosePhoto,
+                    "Choose Profile Photo"), CHOOSE_PROFILE_PICTURE_RESULT);
+
+        }
+    };
 
     private final View.OnClickListener createAccountListener = new View.OnClickListener() {
         @Override
@@ -84,12 +120,50 @@ public class CreateAccountActivity extends Activity {
         }
     };
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == CHOOSE_PROFILE_PICTURE_RESULT && resultCode != 0) {
+            final Uri imageUri = data.getData();
+
+            try {
+                this.currentImage = Media.getBitmap(this.getContentResolver(), imageUri);
+
+                if(getOrientation(imageUri) != 0) {
+                    final Matrix matrix = new Matrix();
+                    matrix.postRotate(getOrientation(imageUri));
+
+                    if(rotateImage != null) {
+                        rotateImage.recycle();
+                    }
+                    rotateImage = Bitmap.createBitmap(currentImage, 0, 0, currentImage.getWidth(),
+                            currentImage.getHeight(), matrix, true);
+
+                    profilePicture.setImageBitmap(rotateImage);
+                }
+                else {
+                    profilePicture.setImageBitmap(currentImage);
+                }
+            }
+            catch (Exception e) {
+                makeToast("Sorry, something went wrong");
+            }
+        }
+    }
+
+    public int getOrientation(Uri photoUri) {
+        final Cursor cursor = theC.getContentResolver().query(photoUri,
+                new String[] { MediaStore.Images.ImageColumns.ORIENTATION },null, null, null);
+
+        if (cursor.getCount() != 1) {
+            return -1;
+        }
+        cursor.moveToFirst();
+        return cursor.getInt(0);
+    }
+
     private void makeToast(final String message) {
         Constants.makeToast(theC, message);
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
