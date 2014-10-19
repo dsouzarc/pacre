@@ -11,6 +11,9 @@ public final class Constants {
     public static final String NAME = "name";
     public static final String APP_TAG = "com.ryan.recap";
 
+    public static final int USERNAME_MINIMUM = 14;
+    public static final int PASSWORD_MINIMUM = 5;
+
     public static void log(final String message) {
         Log.e(APP_TAG, message);
     }

@@ -57,18 +57,22 @@ public class CreateAccountActivity extends Activity {
                 return;
             }
 
-            if(password.length() < 5) {
+            if(password.length() < Constants.PASSWORD_MINIMUM) {
                 makeToast("Please enter a longer password");
                 return;
             }
 
             final String email = usernameET.getText().toString();
-            if(email.substring(email.length() - 4).equals(".edu")) {
+            if(!email.substring(email.length() - 4).equals(".edu")) {
                 makeToast("Please enter a valid .edu email address");
             }
-            if(email.substring(email.length() - 13).equals("quinnipac.edu")) {
+            if(!email.substring(email.length() - 13).equals("quinnipac.edu")) {
                 makeToast("Please enter a valid quinnipac.edu");
             }
+            if(email.length() < Constants.USERNAME_MINIMUM) {
+                makeToast("Please enter a valid email address");
+            }
+
             makeToast("Please check your email to confirm this account");
 
             theEditor.putString(Constants.NAME, name);

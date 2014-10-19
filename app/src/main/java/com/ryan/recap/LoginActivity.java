@@ -58,9 +58,23 @@ public class LoginActivity extends Activity {
     private final View.OnClickListener loginListener = new View.OnClickListener() {
         @Override
         public void onClick(final View view) {
+            final String enteredUsername = emailAddress.getText().toString();
+            final String enteredPassword = password.getText().toString();
 
+            if(enteredUsername.equals(getPreference(Constants.USERNAME)) &&
+                    enteredUsername.length() >= Constants.USERNAME_MINIMUM) {
+                if(enteredPassword.equals(getPreference(Constants.PASSWORD)) &&
+                        enteredPassword.length() >= Constants.PASSWORD_MINIMUM) {
+                    makeToast("Logging in...");
+
+                }
+            }
         }
     };
+
+    private void makeToast(final String message) {
+        Constants.makeToast(theC, message);
+    }
 
     private String getPreference(final String tag) {
         return this.thePrefs.getString(tag, "");
