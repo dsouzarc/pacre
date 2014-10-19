@@ -73,7 +73,6 @@ public class CreateAccountActivity extends Activity {
             choosePhoto.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(choosePhoto,
                     "Choose Profile Photo"), CHOOSE_PROFILE_PICTURE_RESULT);
-
         }
     };
 
@@ -82,6 +81,11 @@ public class CreateAccountActivity extends Activity {
         public void onClick(final View view) {
             //Check if name is valid
             final String name = nameET.getText().toString();
+
+            if(currentImage == null) {
+                makeToast("You must choose a profile picture");
+                return;
+            }
 
             if(name.length() < 3 || !name.contains(" ")) {
                 makeToast("Please enter a valid first and last name");
@@ -134,14 +138,15 @@ public class CreateAccountActivity extends Activity {
         }
     }
 
-    private  Bitmap getImageBitmap(){
-        try{
+    private Bitmap getImageBitmap() {
+        try {
             final FileInputStream fis = theC.openFileInput(Constants.PROFILE_PICTURE);
             final Bitmap b = BitmapFactory.decodeStream(fis);
             fis.close();
             return b;
         }
-        catch(Exception e){
+        catch(Exception e) {
+            makeToast("Sorry, something went wrong while fetching saved profile photo");
         }
         return null;
     }
@@ -170,6 +175,7 @@ public class CreateAccountActivity extends Activity {
                 else {
                     profilePicture.setImageBitmap(currentImage);
                 }
+                saveProfilePicture();
             }
             catch (Exception e) {
                 makeToast("Sorry, something went wrong");
