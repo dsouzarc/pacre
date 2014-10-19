@@ -13,8 +13,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Button;
 import android.widget.TextView;
+import android.graphics.BitmapFactory;
+import java.io.FileInputStream;
 import android.provider.MediaStore;
 import android.graphics.Matrix;
+import java.io.FileOutputStream;
 import android.view.View;
 import android.widget.ImageView;
 import android.database.Cursor;
@@ -120,6 +123,29 @@ public class CreateAccountActivity extends Activity {
         }
     };
 
+    private void saveProfilePicture() {
+        try {
+            final FileOutputStream output = theC.openFileOutput(Constants.PROFILE_PICTURE, Context.MODE_PRIVATE);
+            currentImage.compress(Bitmap.CompressFormat.PNG, 100, output);
+            output.close();
+        }
+        catch (Exception e) {
+            makeToast("Sorry, something went wrong while saving your profile picture");
+        }
+    }
+
+    private  Bitmap getImageBitmap(){
+        try{
+            final FileInputStream fis = theC.openFileInput(Constants.PROFILE_PICTURE);
+            final Bitmap b = BitmapFactory.decodeStream(fis);
+            fis.close();
+            return b;
+        }
+        catch(Exception e){
+        }
+        return null;
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == CHOOSE_PROFILE_PICTURE_RESULT && resultCode != 0) {
@@ -137,8 +163,9 @@ public class CreateAccountActivity extends Activity {
                     }
                     rotateImage = Bitmap.createBitmap(currentImage, 0, 0, currentImage.getWidth(),
                             currentImage.getHeight(), matrix, true);
-
                     profilePicture.setImageBitmap(rotateImage);
+                    currentImage.recycle();
+                    currentImage = rotateImage;
                 }
                 else {
                     profilePicture.setImageBitmap(currentImage);
