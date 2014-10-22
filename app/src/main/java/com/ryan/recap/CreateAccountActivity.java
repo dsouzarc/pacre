@@ -85,8 +85,6 @@ public class CreateAccountActivity extends Activity {
 
             makeToast("Confirmation email sent to: " + usernameET.getText().toString());
 
-            
-
         }
 
 
