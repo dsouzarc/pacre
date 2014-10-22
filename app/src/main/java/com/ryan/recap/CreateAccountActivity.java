@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import java.util.Random;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import com.github.sendgrid.SendGrid;
 import java.io.FileInputStream;
+import android.os.AsyncTask;
 import java.io.FileOutputStream;
 
 public class CreateAccountActivity extends Activity {
@@ -54,6 +56,39 @@ public class CreateAccountActivity extends Activity {
 
         this.createAccountButton.setOnClickListener(createAccountListener);
         this.profilePicture.setOnClickListener(chooseProfilePictureListener);
+
+    }
+
+    private class CreateAccountTask extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        public Boolean doInBackground(Void... params) {
+            final int code = new Random().nextInt(10000);
+            theEditor.putInt(Constants.CONFIRMATION_CODE, code);
+            theEditor.commit();
+
+            final SendGrid theSendGrid = new SendGrid(Constants.SENDGRID_USERNAME,
+                    Constants.SENDGRID_PASSWORD);
+            theSendGrid.setFrom("");
+            theSendGrid.addTo(usernameET.getText().toString());
+            theSendGrid.setSubject("Recap Confirmation");
+            theSendGrid.setText("Your Confirmation Code: " + code);
+
+            return theSendGrid.send().contains("Success");
+        }
+
+        @Override
+        public void onPostExecute(Boolean result) {
+            if(!result) {
+                makeToast("Sorry, there was an error sending a confirmation email. Please try again");
+                return;
+            }
+
+            makeToast("Confirmation email sent to: " + usernameET.getText().toString());
+
+            
+
+        }
+
 
     }
 
@@ -118,8 +153,6 @@ public class CreateAccountActivity extends Activity {
             theEditor.putString(Constants.USERNAME, email);
             theEditor.putString(Constants.PASSWORD, password);
             theEditor.commit();
-
-            startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
         }
     };
 

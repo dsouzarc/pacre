@@ -11,6 +11,10 @@ public final class Constants {
     public static final String NAME = "name";
     public static final String PROFILE_PICTURE = "profile_picture";
     public static final String APP_TAG = "com.ryan.recap";
+    public static final String CONFIRMATION_CODE = "confirmation_code";
+
+    public static final String SENDGRID_USERNAME = "";
+    public static final String SENDGRID_PASSWORD = "";
 
     public static final int USERNAME_MINIMUM = 14;
     public static final int PASSWORD_MINIMUM = 5;
