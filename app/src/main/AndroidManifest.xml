@@ -23,6 +23,10 @@
             android:name=".CreateAccountActivity"
             android:label="@string/title_activity_create_account" >
         </activity>
+        <activity
+            android:name=".MainFragmentStatePagerAdapter"
+            android:label="@string/title_activity_main_fragment_state_pager_adapter" >
+        </activity>
     </application>
 
 </manifest>

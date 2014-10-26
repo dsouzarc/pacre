@@ -21,6 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:support-v4:18.0.+"
     compile files('libs/sendgrid-0.1.2-jar.jar')
     compile files('libs/aws-java-sdk-1.9.1.jar')
 }
