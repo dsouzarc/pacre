@@ -13,7 +13,6 @@ import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Handler;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,8 +95,8 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
     private List<Fragment> getFragments() {
         final List<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(new Fragment_Feed());
-        fragments.add(new Fragment_Rankings());
+        fragments.add(new com.ryan.recap.fragments.Fragment_Feed());
+        fragments.add(new com.ryan.recap.fragments.Fragment_Rankings());
         return fragments;
     }
 
