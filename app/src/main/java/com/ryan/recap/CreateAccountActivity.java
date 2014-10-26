@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
-import com.ryan.recap.fragments.Fragment_Notifications;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
