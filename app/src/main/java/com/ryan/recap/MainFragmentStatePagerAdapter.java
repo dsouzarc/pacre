@@ -69,7 +69,18 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
         final Tab feedTab = theActionBar.newTab().setText(FEED).setTabListener(tabListener);
         theActionBar.addTab(feedTab, 0);
-        
+
+        final Tab rankingsTab = theActionBar.newTab().setText(RANKINGS).setTabListener(tabListener);
+        theActionBar.addTab(rankingsTab, 1);
+
+        final Tab newRecapTab = theActionBar.newTab().setText(NEW_RECAP).setTabListener(tabListener);
+        theActionBar.addTab(newRecapTab, 2);
+
+        final Tab notificationsTab = theActionBar.newTab().setText(NOTIFICATIONS).setTabListener(tabListener);
+        theActionBar.addTab(notificationsTab, 3);
+
+        final Tab profileTab = theActionBar.newTab().setText(PROFILE).setTabListener(tabListener);
+        theActionBar.addTab(profileTab, 4);
 
     }
 
