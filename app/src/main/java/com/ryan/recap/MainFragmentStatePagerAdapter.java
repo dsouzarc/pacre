@@ -1,21 +1,36 @@
 package com.ryan.recap;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.ryan.recap.R;
-import android.support.v4.app.FragmentManager;
-import java.util.List;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class MainFragmentStatePagerAdapter extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainFragmentStatePagerAdapter extends FragmentActivity {
+
+    private ViewPager thePager;
+    private FragmentAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_fragment_state_pager_adapter);
+
+        final List<Fragment> fragments = getFragments();
+
+        this.myAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
+        this.thePager = (ViewPager) findViewById(R.id.viewpager);
+    }
+
+    private List<Fragment> getFragments() {
+        final List<Fragment> fragments = new ArrayList<Fragment>();
+        return fragments;
     }
 
 
