@@ -1,8 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ryan.recap.CreateAccountActivity" >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
+
+    <item android:id="@+id/confirm_account"
+          android:title="Enter Confirmation Code"
+          android:icon="@android:drawable/ic_input_add"
+          android:showAsAction="always" />
 </menu>
