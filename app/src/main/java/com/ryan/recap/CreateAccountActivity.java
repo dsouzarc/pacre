@@ -273,8 +273,9 @@ public class CreateAccountActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
-            case R.id.con
-
+            case R.id.enter_confirmation_code :
+                enterConfirmationCode();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
