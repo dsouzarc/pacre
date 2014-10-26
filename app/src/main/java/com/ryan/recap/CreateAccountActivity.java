@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import java.util.Random;
@@ -15,9 +16,11 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.content.DialogInterface;
 import android.widget.ImageView;
 import com.github.sendgrid.SendGrid;
 import java.io.FileInputStream;
@@ -78,16 +81,45 @@ public class CreateAccountActivity extends Activity {
 
         @Override
         public void onPostExecute(Boolean result) {
-            if(!result) {
+            if (!result) {
                 makeToast("Sorry, there was an error sending a confirmation email. Please try again");
                 return;
             }
-
             makeToast("Confirmation email sent to: " + usernameET.getText().toString());
 
+            enterConfirmationCode();
         }
+    }
 
+    private void enterConfirmationCode() {
+        final AlertDialog.Builder theAlert = new AlertDialog.Builder(CreateAccountActivity.this);
+        theAlert.setTitle("Confirmation Code");
+        theAlert.setMessage("Please enter the confirmation code that was sent to " +
+                thePrefs.getString(Constants.USERNAME, ""));
 
+        final EditText theCode = new EditText(theC);
+        theCode.setBackgroundColor(Color.WHITE);
+        theCode.setTextColor(Color.BLACK);
+
+        theAlert.setView(theCode);
+
+        theAlert.setPositiveButton("Create Account", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (!theCode.getText().toString().equals(
+                        thePrefs.getString(Constants.CONFIRMATION_CODE, ""))) {
+                    makeToast("Sorry, wrong confirmation code entered");
+                    return;
+                }
+
+            }
+        });
+        theAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
     }
 
     private final View.OnClickListener chooseProfilePictureListener = new View.OnClickListener() {
