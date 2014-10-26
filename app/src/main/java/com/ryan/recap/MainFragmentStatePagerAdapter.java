@@ -54,10 +54,13 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
         this.theActionBar = getActionBar();
         this.myAdapter = new FragmentAdapter(getSupportFragmentManager(), getFragments());
         this.thePager = (ViewPager) findViewById(R.id.viewpager);
-
-        this.thePager.setOnPageChangeListener(thePageListener);
         this.thePager.setAdapter(this.myAdapter);
+        this.thePager.setOnPageChangeListener(thePageListener);
+
+        this.theActionBar.show();
         this.theActionBar.setDisplayShowTitleEnabled(true);
+        this.theActionBar.setHomeButtonEnabled(false);
+        this.theActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         final Tab homeTab = theActionBar.newTab().setText(HOME).setTabListener(tabListener);
         theActionBar.addTab(homeTab, 0);
@@ -139,6 +142,12 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
         @Override
         public int getCount() {
             return this.fragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            //return CONTENT[position % CONTENT.length].toUpperCase();
+            return "Page Title: " + position;
         }
     }
 
