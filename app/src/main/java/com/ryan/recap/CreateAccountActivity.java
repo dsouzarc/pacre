@@ -1,31 +1,33 @@
 package com.ryan.recap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.app.AlertDialog;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import java.util.Random;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.content.DialogInterface;
 import android.widget.ImageView;
+
 import com.github.sendgrid.SendGrid;
+
 import java.io.FileInputStream;
-import android.os.AsyncTask;
 import java.io.FileOutputStream;
+import java.util.Random;
 
 public class CreateAccountActivity extends Activity {
 
