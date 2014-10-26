@@ -6,7 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.ryan.recap.R;
 public class Fragment_Notifications extends Fragment {
     private static Context theC;
 
@@ -16,10 +17,7 @@ public class Fragment_Notifications extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        final View theView = inflater.inflate(com.ryan.recap.R.layout.fragment_notifications, container, false);
-        final TextView theV = (TextView) theView.findViewById(com.ryan.recap.R.id.textview);
-        theV.setText("Home Fragment");
-
+        final View theView = inflater.inflate(R.layout.fragment_notifications, container, false);
         return theView;
     }
 
