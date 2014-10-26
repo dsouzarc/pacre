@@ -37,7 +37,12 @@ import java.util.List;
 
 public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
+    private static final String HOME = "Home";
+    private static final String SCHOOLS = "Schools";
+
+    private ActionBar theActionBar;
     private ViewPager thePager;
+    private Context theC;
     private FragmentAdapter myAdapter;
 
     @Override
@@ -45,12 +50,50 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_fragment_state_pager_adapter);
 
-        final List<Fragment> fragments = getFragments();
-
-        this.myAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
+        this.theC = this;
+        this.theActionBar = getActionBar();
+        this.myAdapter = new FragmentAdapter(getSupportFragmentManager(), getFragments());
         this.thePager = (ViewPager) findViewById(R.id.viewpager);
+
+        this.thePager.setOnPageChangeListener(thePageListener);
         this.thePager.setAdapter(this.myAdapter);
+        this.theActionBar.setDisplayShowTitleEnabled(true);
+
+        final Tab homeTab = theActionBar.newTab().setText(HOME).setTabListener(tabListener);
+        theActionBar.addTab(homeTab, 0);
+
+        final Tab schoolsTab = theActionBar.newTab().setText(SCHOOLS).setTabListener(tabListener);
+        theActionBar.addTab(schoolsTab, 1);
     }
+
+    private final ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+        @Override
+        public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            thePager.setCurrentItem(tab.getPosition());
+
+            switch (tab.getPosition()) {
+                case 0:
+                    theActionBar.setTitle("Home");
+                    break;
+                case 1:
+                    theActionBar.setTitle("Schools");
+                    break;
+                default:
+                    theActionBar.setTitle("Recap");
+                    break;
+            }
+        }
+
+        @Override
+        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+
+        }
+
+        @Override
+        public void onTabReselected(Tab tab, FragmentTransaction ft) {
+
+        }
+    };
 
     private List<Fragment> getFragments() {
         final List<Fragment> fragments = new ArrayList<Fragment>();
@@ -98,4 +141,42 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
             return this.fragments.size();
         }
     }
+
+    //listener for pageChange
+    final ViewPager.SimpleOnPageChangeListener thePageListener = new ViewPager.SimpleOnPageChangeListener() {
+        @Override
+        public void onPageSelected(int position) {
+            super.onPageSelected(position);
+            theActionBar.setSelectedNavigationItem(position);
+        }
+
+        int positionCurrent;
+        boolean dontLoadList;
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            if (state == 0) { // the viewpager is idle as swipping ended
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        if (!dontLoadList) {
+                            //async thread code to execute loading the list...
+                        }
+                    }
+                }, 06);
+            }
+        }
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            positionCurrent = position;
+            if (positionOffset == 0 && positionOffsetPixels == 0) {
+                // the offset is zero when the swiping ends{
+                dontLoadList = false;
+            }
+            else {
+                // To avoid loading content for list after swiping the pager.
+                dontLoadList = true;
+            }
+        }
+    };
 }
