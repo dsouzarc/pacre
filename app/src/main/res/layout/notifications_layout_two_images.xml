@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:layout_marginTop="8dp">
+
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:maxWidth="72dp"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerInside"
+        android:id="@+id/profilePicture"
+        android:background="@drawable/blankprofile"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginLeft="8dp"
+        android:text="Description"
+        android:layout_toRightOf="@+id/profilePicture"
+        android:layout_centerVertical="true"
+        android:textSize="16sp"
+        android:id="@+id/descriptionTV"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginLeft="8dp"
+        android:text="Time tv"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:layout_below="@+id/descriptionTV"
+        android:layout_toRightOf="@+id/profilePicture"
+        android:layout_marginTop="8dp"
+        android:id="@+id/timeTV"/>
+
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:maxWidth="72dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside"
+        android:id="@+id/pictureTwo"
+        android:background="@drawable/blankprofile"/>
+</RelativeLayout>
