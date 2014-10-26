@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.content.Context;
 import android.widget.TextView;
 import android.os.Bundle;
-public class Feed_Fragment extends Fragment {
+public class Fragment_Feed extends Fragment {
     private static Context theC;
 
     private static void setContext(final Context theContext) {

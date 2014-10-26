@@ -96,8 +96,8 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
     private List<Fragment> getFragments() {
         final List<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(new Feed_Fragment());
-        fragments.add(new Rankings_Fragment());
+        fragments.add(new Fragment_Feed());
+        fragments.add(new Fragment_Rankings());
         return fragments;
     }
 
