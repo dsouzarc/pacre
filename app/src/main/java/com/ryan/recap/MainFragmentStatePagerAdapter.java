@@ -7,9 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.widget.ImageView;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -37,9 +39,11 @@ import java.util.List;
 
 public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
-    private static final String HOME = "Home";
-    private static final String SCHOOLS = "Schools";
-    private static final String NEW_RECA
+    private static final String FEED = "Feed";
+    private static final String RANKINGS = "Rankings";
+    private static final String NEW_RECAP = "New Recap";
+    private static final String NOTIFICATIONS = "Notifications";
+    private static final String PROFILE = "Profile";
 
     private ActionBar theActionBar;
     private ViewPager thePager;
@@ -63,12 +67,10 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
         this.theActionBar.setHomeButtonEnabled(false);
         this.theActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        final Tab homeTab = theActionBar.newTab().setText("").setTabListener(tabListener);
-        homeTab.setIcon(android.R.drawable.ic_menu_view);
-        theActionBar.addTab(homeTab, 0);
+        final Tab feedTab = theActionBar.newTab().setText(FEED).setTabListener(tabListener);
+        theActionBar.addTab(feedTab, 0);
+        
 
-        final Tab schoolsTab = theActionBar.newTab().setText(SCHOOLS).setTabListener(tabListener);
-        theActionBar.addTab(schoolsTab, 1);
     }
 
     private final ActionBar.TabListener tabListener = new ActionBar.TabListener() {
@@ -104,7 +106,7 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
     private List<Fragment> getFragments() {
         final List<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new Home_Fragment());
-        fragments.add(new Schools_Fragment());
+        fragments.add(new Rankings_Fragment());
         return fragments;
     }
 

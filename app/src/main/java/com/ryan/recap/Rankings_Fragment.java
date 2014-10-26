@@ -8,7 +8,7 @@ import android.content.Context;
 import android.widget.TextView;
 import android.os.Bundle;
 
-public class Schools_Fragment extends Fragment {
+public class Rankings_Fragment extends Fragment {
     private static Context theC;
 
     private static void setContext(final Context theContext) {
