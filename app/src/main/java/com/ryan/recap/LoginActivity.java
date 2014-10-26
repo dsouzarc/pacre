@@ -71,6 +71,7 @@ public class LoginActivity extends Activity {
                 if(enteredPassword.equals(getPreference(Constants.PASSWORD)) &&
                         enteredPassword.length() >= Constants.PASSWORD_MINIMUM) {
                     makeToast("Logging in...");
+                    startActivity(new Intent(LoginActivity.this, MainFragmentStatePagerAdapter.class));
 
                 }
             }
