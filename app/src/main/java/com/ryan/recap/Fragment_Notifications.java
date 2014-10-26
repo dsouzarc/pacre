@@ -16,7 +16,7 @@ public class Fragment_Notifications extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        final View theView = inflater.inflate(R.layout.notifications_fragment, container, false);
+        final View theView = inflater.inflate(R.layout.fragment_notifications, container, false);
         final TextView theV = (TextView) theView.findViewById(R.id.textview);
         theV.setText("Home Fragment");
 

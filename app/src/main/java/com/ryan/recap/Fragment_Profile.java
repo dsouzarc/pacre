@@ -17,7 +17,7 @@ public class Fragment_Profile extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        final View theView = inflater.inflate(R.layout.profile_fragment, container, false);
+        final View theView = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView theV = (TextView) theView.findViewById(R.id.textview);
         theV.setText("Home Fragment");
 
