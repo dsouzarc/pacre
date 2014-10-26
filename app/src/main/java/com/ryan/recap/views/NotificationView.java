@@ -1,14 +1,13 @@
 package com.ryan.recap.views;
 
 import android.content.Context;
-import android.widget.ImageView;
-import android.widget.TextView;
-import com.ryan.recap.objects.Notification;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.View;
-import com.ryan.recap.R;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.ryan.recap.R;
+import com.ryan.recap.objects.Notification;
 
 public class NotificationView extends RelativeLayout{
     private final Context theC;
@@ -36,15 +35,17 @@ public class NotificationView extends RelativeLayout{
     }
 
     private void setUp() {
-        inflate(getContext(), R.layout.notifications_layout, this);
-        ((ImageView)findViewById(R.id.profilePicture)).setBackground(notification.getOtherDrawable());
-        ((TextView)findViewById(R.id.descriptionTV)).setText(notification.getMessage());
 
-
-
-
+        if(notification.getOtherDrawable() == null) {
+            inflate(getContext(), R.layout.notifications_layout, this);
+        }
+        else {
+            inflate(getContext(), R.layout.notifications_layout_two_images, this);
+            ((ImageView) findViewById(R.id.pictureTwo)).setBackground(notification.getOtherDrawable());
+        }
+        ((ImageView) findViewById(R.id.profilePicture))
+                .setBackground(notification.getOtherPerson().getProfilePhoto());
+        ((TextView) findViewById(R.id.descriptionTV)).setText(notification.getMessage());
+        ((TextView) findViewById(R.id.timeTV)).setText(notification.getTime());
     }
-
-
-
 }
