@@ -42,6 +42,7 @@
         android:layout_width="72dp"
         android:layout_height="match_parent"
         android:maxWidth="72dp"
+        android:layout_marginLeft="8dp"
         android:layout_alignParentRight="true"
         android:scaleType="centerInside"
         android:id="@+id/pictureTwo"
