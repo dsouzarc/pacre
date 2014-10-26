@@ -8,7 +8,7 @@ import android.content.Context;
 import android.widget.TextView;
 import android.os.Bundle;
 
-public class Fragment_Rankings extends Fragment {
+public class Fragment_NewRecap extends Fragment {
     private static Context theC;
 
     private static void setContext(final Context theContext) {
@@ -17,7 +17,7 @@ public class Fragment_Rankings extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        final View theView = inflater.inflate(R.layout.fragment_feed, container, false);
+        final View theView = inflater.inflate(R.layout.newrecap_fragment, container, false);
         return theView;
     }
 
