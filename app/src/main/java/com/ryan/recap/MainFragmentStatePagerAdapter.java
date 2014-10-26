@@ -39,6 +39,7 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
     private static final String HOME = "Home";
     private static final String SCHOOLS = "Schools";
+    private static final String NEW_RECA
 
     private ActionBar theActionBar;
     private ViewPager thePager;
@@ -62,7 +63,8 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
         this.theActionBar.setHomeButtonEnabled(false);
         this.theActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        final Tab homeTab = theActionBar.newTab().setText(HOME).setTabListener(tabListener);
+        final Tab homeTab = theActionBar.newTab().setText("").setTabListener(tabListener);
+        homeTab.setIcon(android.R.drawable.ic_menu_view);
         theActionBar.addTab(homeTab, 0);
 
         final Tab schoolsTab = theActionBar.newTab().setText(SCHOOLS).setTabListener(tabListener);
@@ -77,6 +79,7 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
             switch (tab.getPosition()) {
                 case 0:
                     theActionBar.setTitle("Home");
+
                     break;
                 case 1:
                     theActionBar.setTitle("Schools");
