@@ -30,6 +30,7 @@ public class MainFragmentStatePagerAdapter extends FragmentActivity {
 
     private List<Fragment> getFragments() {
         final List<Fragment> fragments = new ArrayList<Fragment>();
+        fragments.add(new Home_Fragment());
         return fragments;
     }
 
