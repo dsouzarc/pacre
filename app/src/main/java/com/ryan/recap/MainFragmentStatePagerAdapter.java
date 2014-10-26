@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.ryan.recap.R;
+import android.support.v4.app.FragmentManager;
+import java.util.List;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class MainFragmentStatePagerAdapter extends Activity {
@@ -33,5 +36,25 @@ public class MainFragmentStatePagerAdapter extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    class FragmentAdapter extends FragmentStatePagerAdapter {
+        private final List<Fragment> fragments;
+
+        public FragmentAdapter(FragmentManager fm, List<Fragment> fragments) {
+            super(fm);
+            this.fragments = fragments;
+
+        }
+
+        @Override
+        public Fragment getItem(final int position) {
+            return this.fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return this.fragments.size();
+        }
     }
 }
