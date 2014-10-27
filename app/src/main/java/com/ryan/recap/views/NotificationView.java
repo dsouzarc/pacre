@@ -4,8 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.view.ViewGroup;
 import android.widget.TextView;
-
+import com.pkmmte.view.CircularImageView;
 import com.ryan.recap.R;
 import com.ryan.recap.objects.Notification;
 
@@ -43,9 +44,14 @@ public class NotificationView extends RelativeLayout{
             inflate(getContext(), R.layout.notifications_layout_two_images, this);
             ((ImageView) findViewById(R.id.pictureTwo)).setBackground(notification.getOtherDrawable());
         }
-        ((ImageView) findViewById(R.id.profilePicture))
-                .setBackground(notification.getOtherPerson().getProfilePhoto());
         ((TextView) findViewById(R.id.descriptionTV)).setText(notification.getMessage());
         ((TextView) findViewById(R.id.timeTV)).setText(notification.getTime());
+
+        CircularImageView circularImageView = (CircularImageView)findViewById(R.id.profilePicture);
+        circularImageView.setImageBitmap(circularImageView.drawableToBitmap(notification.getOtherPerson().getProfilePhoto()));
+        circularImageView.setBorderWidth(10);
+        circularImageView.setSelectorStrokeWidth(10);
+        circularImageView.addShadow();
+        circularImageView.invalidate();
     }
 }

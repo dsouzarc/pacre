@@ -6,14 +6,14 @@
     android:layout_height="72dp"
     android:layout_marginTop="8dp">
 
-    <ImageView
+    <com.pkmmte.view.CircularImageView
         android:layout_width="72dp"
         android:layout_height="match_parent"
         android:maxWidth="72dp"
         android:layout_alignParentLeft="true"
         android:scaleType="centerInside"
-        android:id="@+id/profilePicture"
-        android:background="@drawable/blankprofile"/>
+        android:id="@+id/profilePicture" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
