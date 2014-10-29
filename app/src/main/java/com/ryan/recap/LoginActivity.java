@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
+import com.pkmmte.view.CircularImageView;
 
 public class LoginActivity extends Activity {
 
@@ -25,7 +26,7 @@ public class LoginActivity extends Activity {
 
     private EditText emailAddress, password;
     private Button loginButton;
-    private ImageView pictureIV;
+    private CircularImageView circularImageView;
     private TextView createAccount;
 
     @Override
@@ -37,7 +38,7 @@ public class LoginActivity extends Activity {
         this.thePrefs = theC.getSharedPreferences(Constants.APP_TAG, Context.MODE_PRIVATE);
         this.theEditor = this.thePrefs.edit();
 
-        this.pictureIV = (ImageView) findViewById(R.id.imageView);
+        this.circularImageView  = (CircularImageView)findViewById(R.id.imageView);
         this.emailAddress = (EditText) findViewById(R.id.emailAddressET);
         this.password = (EditText) findViewById(R.id.passwordET);
         this.loginButton = (Button) findViewById(R.id.loginButton);
@@ -85,7 +86,11 @@ public class LoginActivity extends Activity {
             final FileInputStream fis = theC.openFileInput(Constants.PROFILE_PICTURE);
             final Bitmap b = BitmapFactory.decodeStream(fis);
             fis.close();
-            this.pictureIV.setImageBitmap(b);
+            circularImageView.setImageBitmap(b);
+            circularImageView.setBorderWidth(10);
+            circularImageView.setSelectorStrokeWidth(10);
+            circularImageView.addShadow();
+            circularImageView.invalidate();
         }
         catch(Exception e) {
         }
