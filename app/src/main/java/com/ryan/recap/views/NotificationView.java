@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.pkmmte.view.CircularImageView;
 import com.ryan.recap.R;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 import com.ryan.recap.objects.Notification;
 
 public class NotificationView extends RelativeLayout{

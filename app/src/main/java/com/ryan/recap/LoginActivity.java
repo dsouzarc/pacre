@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.RelativeLayout;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 
 import java.io.FileInputStream;
 import com.pkmmte.view.CircularImageView;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 public class LoginActivity extends Activity {
 
@@ -87,10 +91,13 @@ public class LoginActivity extends Activity {
             final Bitmap b = BitmapFactory.decodeStream(fis);
             fis.close();
             circularImageView.setImageBitmap(b);
-            circularImageView.setBorderWidth(10);
-            circularImageView.setSelectorStrokeWidth(10);
-            circularImageView.addShadow();
-            circularImageView.invalidate();
+
+            LinearLayout.LayoutParams layoutParams =
+                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.weight = 1.0f;
+            layoutParams.gravity = Gravity.CENTER;
+            circularImageView.setLayoutParams(layoutParams);
         }
         catch(Exception e) {
         }
