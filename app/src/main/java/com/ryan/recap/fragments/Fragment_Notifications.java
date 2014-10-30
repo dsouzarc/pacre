@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import com.ryan.recap.objects.Person;
-import com.ryan.recap.objects.Notification;
-import android.widget.LinearLayout;
-import com.ryan.recap.views.NotificationView;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.ryan.recap.R;
+import com.ryan.recap.objects.Notification;
+import com.ryan.recap.objects.Person;
+import com.ryan.recap.views.NotificationView;
 public class Fragment_Notifications extends Fragment {
     private static Context theC;
 

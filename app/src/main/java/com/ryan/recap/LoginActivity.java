@@ -4,23 +4,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.RelativeLayout;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.FileInputStream;
 import com.pkmmte.view.CircularImageView;
-import android.view.Gravity;
-import android.widget.LinearLayout;
-import android.view.ViewGroup;
+
+import java.io.FileInputStream;
 
 public class LoginActivity extends Activity {
 
@@ -91,10 +90,10 @@ public class LoginActivity extends Activity {
             final Bitmap b = BitmapFactory.decodeStream(fis);
             fis.close();
             circularImageView.setImageBitmap(b);
-
             LinearLayout.LayoutParams layoutParams =
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
+
             layoutParams.weight = 1.0f;
             layoutParams.gravity = Gravity.CENTER;
             circularImageView.setLayoutParams(layoutParams);
@@ -125,9 +124,6 @@ public class LoginActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
