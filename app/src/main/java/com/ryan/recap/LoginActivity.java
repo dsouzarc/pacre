@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pkmmte.view.CircularImageView;
@@ -29,7 +30,7 @@ public class LoginActivity extends Activity {
 
     private EditText emailAddress, password;
     private Button loginButton;
-    private CircularImageView circularImageView;
+    private ImageView circularImageView;
     private TextView createAccount;
 
     @Override
@@ -41,7 +42,7 @@ public class LoginActivity extends Activity {
         this.thePrefs = theC.getSharedPreferences(Constants.APP_TAG, Context.MODE_PRIVATE);
         this.theEditor = this.thePrefs.edit();
 
-        this.circularImageView  = (CircularImageView)findViewById(R.id.imageView);
+        this.circularImageView  = (ImageView)findViewById(R.id.profilePicture);
         this.emailAddress = (EditText) findViewById(R.id.emailAddressET);
         this.password = (EditText) findViewById(R.id.passwordET);
         this.loginButton = (Button) findViewById(R.id.loginButton);
@@ -85,21 +86,24 @@ public class LoginActivity extends Activity {
     /** Checks to see if saved profile photo
      * If not, keeps default photo */
     private void setImagePhoto() {
-        try {
-            final FileInputStream fis = theC.openFileInput(Constants.PROFILE_PICTURE);
-            final Bitmap b = BitmapFactory.decodeStream(fis);
-            fis.close();
-            circularImageView.setImageBitmap(b);
-            LinearLayout.LayoutParams layoutParams =
-                    new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            layoutParams.weight = 1.0f;
-            layoutParams.gravity = Gravity.CENTER;
-            circularImageView.setLayoutParams(layoutParams);
-        }
-        catch(Exception e) {
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            final FileInputStream fis = theC.openFileInput(Constants.PROFILE_PICTURE);
+                            final Bitmap b = BitmapFactory.decodeStream(fis);
+                            fis.close();
+                            ((ImageView) findViewById(R.id.profilePicture)).setImageBitmap(b);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        }).start();
     }
 
     private void makeToast(final String message) {

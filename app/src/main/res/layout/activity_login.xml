@@ -1,74 +1,67 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:layout_marginTop="32dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp"
     tools:context=".LoginActivity">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <com.pkmmte.view.CircularImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="false"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/blankprofile"
+        android:id="@+id/profilePicture"
+        app:border_color="#EEEEEE"
+        app:border_width="4dp"
+        app:shadow="true" android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center">
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/passwordET"
+        android:layout_marginBottom="16dp"
+        android:hint="Valid Quinnipiac .edu email address"
+        android:id="@+id/emailAddressET"/>
 
-        <com.pkmmte.view.CircularImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            android:layout_gravity="center"
-            android:layout_above="@+id/emailAddressET"
-            android:src="@drawable/collegeparty"
-            android:layout_marginBottom="64dp"
-            android:id="@+id/imageView"/>
-    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:hint="Your Password"
+        android:layout_above="@+id/createAccount"
+        android:id="@+id/passwordET" />
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_weight="0.5"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/passwordET"
-            android:layout_marginBottom="16dp"
-            android:hint="Valid Quinnipiac .edu email address"
-            android:id="@+id/emailAddressET"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:text="Create Account"
+        android:paddingBottom="64dp"
+        android:layout_above="@+id/loginButton"
+        android:id="@+id/createAccount"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:layout_centerHorizontal="true"
-            android:hint="Your Password"
-            android:layout_above="@+id/createAccount"
-            android:id="@+id/passwordET" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:text="Create Account"
-            android:paddingBottom="64dp"
-            android:layout_above="@+id/loginButton"
-            android:id="@+id/createAccount"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="Sign In"
-            android:background="@color/primary800"
-            android:id="@+id/loginButton"/>
-    </RelativeLayout>
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Sign In"
+        android:background="@color/primary800"
+        android:id="@+id/loginButton"/>
+</RelativeLayout>
