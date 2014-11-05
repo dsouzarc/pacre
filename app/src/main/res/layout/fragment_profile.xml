@@ -1,8 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:background="@color/primary500">
+        <com.pkmmte.view.CircularImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_weight="0.4"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="false"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/blankprofile"
+            android:id="@+id/profilePicture"
+            app:border_color="#EEEEEE"
+            app:border_width="4dp"
+            app:shadow="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameTV"
+            android:text="Name"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0.2"
+            android:textColor="#000000"
+            android:layout_below="@+id/profilePicture"
+            android:textSize="32sp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationTV"
+            android:layout_weight="0.1"
+            android:text="Location"
+            android:textColor="#000000"
+            android:layout_below="@+id/nameTV"
+            android:textSize="24sp"
+            android:gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_weight="0.3"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/locationTV">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_alignParentBottom="true"
+                android:weightSum="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_horizontal"
+                    android:text="35"
+                    android:textSize="24sp"
+                    android:id="@+id/numRecaps"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textSize="16sp"
+                    android:gravity="center_horizontal"
+                    android:text="Num Recaps" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textSize="24sp"
+                    android:gravity="center_horizontal"
+                    android:text="3k"
+
+                    android:id="@+id/numUpvotes"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textSize="16sp"
+                    android:gravity="center_horizontal"
+                    android:text="Num Upvotes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="0.5"
+                    android:text="#1"
+                    android:id="@+id/numRank"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="16sp"
+                    android:layout_weight="0.5"
+                    android:text="Num Rank" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llRecentActivity"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+    
+    
 
 </LinearLayout>
