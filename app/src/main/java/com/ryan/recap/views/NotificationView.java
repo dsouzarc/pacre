@@ -47,8 +47,10 @@ public class NotificationView extends RelativeLayout{
         ((TextView) findViewById(R.id.descriptionTV)).setText(notification.getMessage());
         ((TextView) findViewById(R.id.timeTV)).setText(notification.getTime());
 
-        CircularImageView circularImageView = (CircularImageView)findViewById(R.id.profilePicture);
-        circularImageView.setImageBitmap(circularImageView.drawableToBitmap(notification.getOtherPerson().getProfilePhoto()));
+        final CircularImageView circularImageView =
+                (CircularImageView)findViewById(R.id.profilePicture);
+        circularImageView.setImageBitmap(
+                circularImageView.drawableToBitmap(notification.getOtherPerson().getProfilePhoto()));
         circularImageView.setBorderWidth(10);
         circularImageView.setSelectorStrokeWidth(10);
         circularImageView.addShadow();
