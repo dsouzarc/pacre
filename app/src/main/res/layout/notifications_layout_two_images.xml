@@ -16,6 +16,7 @@
         android:layout_alignParentLeft="true"
         android:scaleType="centerInside"
         android:id="@+id/profilePicture"
+        android:layout_marginLeft="8dp"
         android:background="@drawable/blankprofile"/>
     <TextView
         android:layout_width="wrap_content"
